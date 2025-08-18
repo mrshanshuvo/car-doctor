@@ -16,6 +16,7 @@ export default function Navbar() {
     { name: "Services", link: "/services" },
     { name: "Blog", link: "/blog" },
     { name: "Contact", link: "/contact" },
+    { name: "My Bookings", link: "/myBookings" },
   ];
 
   return (

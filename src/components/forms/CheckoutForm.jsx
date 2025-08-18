@@ -32,16 +32,25 @@ export default function CheckoutForm({ data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Booking Data:", formData);
+
+    // Add status and extra fields
+    const bookingData = {
+      ...formData,
+      status: "pending", // ✅ Add status
+      serviceId: data?._id, // optional: if you want to link the service
+      price: data?.price, // optional
+      createdAt: new Date().toISOString(), // optional
+    };
+
     const res = await fetch("http://localhost:3000/api/service", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(bookingData),
     });
+
     const postedData = await res.json();
-    // console.log("Posted Data:", postedData);
 
     if (res.status === 200) {
       toast.success("Booking successful!");
@@ -50,7 +59,12 @@ export default function CheckoutForm({ data }) {
         date: "",
         message: "",
         presentAddress: "",
+        customerName: session?.user?.name ?? "",
+        email: session?.user?.email ?? "",
+        service: data?.title ?? "",
       });
+    } else {
+      toast.error("Failed to book service.");
     }
   };
 
