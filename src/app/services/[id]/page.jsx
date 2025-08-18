@@ -3,8 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 export default async function ServiceDetailsPage({ params }) {
-  const p = await params.id;
-  const res = await fetch(`http://localhost:3000/api/service/${p}`, {
+  const { id } = await params;
+  const res = await fetch(`http://localhost:3000/api/service/${id}`, {
     cache: "no-cache",
   });
   const data = await res.json();
