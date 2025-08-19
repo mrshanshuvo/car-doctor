@@ -34,7 +34,7 @@ export default function UpdateBookings({ booking }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(booking);
+    // console.log(booking);
     try {
       const res = await fetch(
         `http://localhost:3000/api/myBookings/${booking?._id}`,
