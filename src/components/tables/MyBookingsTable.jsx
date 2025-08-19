@@ -1,4 +1,5 @@
 import DeleteBooking from "@/app/myBookings/components/DeleteBooking";
+import Link from "next/link";
 import React from "react";
 
 const MyBookingsTable = ({ bookings }) => {
@@ -25,9 +26,11 @@ const MyBookingsTable = ({ bookings }) => {
                 <td className="py-2 px-4 border-b">{booking.phone}</td>
                 <td className="py-2 px-4 border-b">{booking.status}</td>
                 <td className="py-2 px-4 border-b space-x-2">
-                  <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition cursor-pointer">
-                    Edit
-                  </button>
+                  <Link href={`/myBookings/${booking._id}`}>
+                    <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition cursor-pointer">
+                      Edit
+                    </button>
+                  </Link>
                   <DeleteBooking id={booking._id} />
                 </td>
               </tr>
